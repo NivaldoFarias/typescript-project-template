@@ -28,6 +28,8 @@
   <!-- Badges source: https://dev.to/envoy_/150-badges-for-github-pnk -->
 </div>
 
+#
+
 <!-- Installation and Usage -->
 
 ### Installation and Usage
@@ -54,7 +56,9 @@ npm start
 
 ###### _ps.: Make sure to update the package.json file with your own credentials!_
 
-<!--  -->
+#
+
+<!-- Error Handling and Logging -->
 
 ### Error Handling and Logging
 
@@ -69,18 +73,18 @@ A `AppError` Object is used to handle errors in the application. It is a simple 
 - `message`: A string containing a simplified error message, for _Client side_ use. **This is the message that will be displayed to the user.**
 - `detail`: A string containing a detailed error message, for _Client side_ use. Can be used to provide more information about the error, such as the stack trace, or suggestions on how to counter the error.
 
-##### &nbsp; ▾ &nbsp; Example
+##### Example Usage
 
 ```typescript
   // ..../middlewares/user.middleware.ts
 
   import AppError from './events/AppError';
   ...
-  ...
+  ..
 
   async function findById(req: Request,...){
     ...
-    ...
+    ..
 
     if (!user){
       throw new AppError(
@@ -90,7 +94,7 @@ A `AppError` Object is used to handle errors in the application. It is a simple 
         'Ensure to provide a valid user ID.'
       );
     }
-    ...
+    ..
     ...
   }
 ```
@@ -102,28 +106,32 @@ A `AppLog` Object is used to handle logs in the application. It is a simple obje
 - `type`: A string containing the main _Layer Structure_ that contains the log. There are six allowed values: `Error`, `Server`, `Controller`, `Service`, `Middleware` and `Repository`.
 - `text`: A descriptive string containing the log message. Generally, a short message that describes the output event of the function that generated the log.
 
-##### &nbsp; ▾ &nbsp; Example
+##### Example Usage
 
 ```typescript
   // ..../middlewares/user.middleware.ts
 
   import AppLog from './events/AppLog';
   ...
-  ...
+  ..
 
   async function findById(req: Request,...){
     ...
-    ...
+    ..
 
     AppLog('Middleware', 'User found');
     res.locals.user = user;
     return next();
   }
+  ..
+  ...
 ```
 
 ###### _ps.2: Have fun with these structures! They are in no way restricted to the project's scope_
 
-<!-- Content -->
+#
+
+<!-- Footer -->
 
 ### Author
 
