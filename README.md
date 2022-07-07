@@ -28,6 +28,32 @@
   <!-- Badges source: https://dev.to/envoy_/150-badges-for-github-pnk -->
 </div>
 
+<!-- Installation and Usage -->
+
+### Installation and Usage
+
+###### Pre-requisites: Node.js `^16.14.0`, PostgreSQL `^12.11`
+
+First, download the zip file and extract it in the root of your project.
+
+```bash
+wget https://github.com/NivaldoFarias/typescript-project-template/archive/main.zip
+```
+
+Then run the following command to install the project's dependencies:
+
+```bash
+npm install
+```
+
+That's it! You can now start developing your TypeScript Project by running the command below. Happy coding!
+
+```bash
+npm start
+```
+
+###### _ps.: Make sure to update the package.json file with your own credentials!_
+
 <!-- Content -->
 
 ### Author
