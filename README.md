@@ -54,6 +54,46 @@ npm start
 
 ###### _ps.: Make sure to update the package.json file with your own credentials!_
 
+<!--  -->
+
+### Error Handling and Logging
+
+You may have noticed that two main structures are already set: a `AppLog` Object and a `AppError` Object. Both are frequently referenced in the code, but do have a specific usage.
+
+#### AppError
+
+A `AppError` Object is used to handle errors in the application. It is a simple object that takes four parameters:
+
+- `log`: A string containing a simplified error message, for _Server side_ use. **This is the message that will be used by the `AppLog` Object**
+- `statusCode`: An integer containing the HTTP status code.
+- `message`: A string containing a simplified error message, for _Client side_ use. **This is the message that will be displayed to the user.**
+- `detail`: A string containing a detailed error message, for _Client side_ use. Can be used to provide more information about the error, such as the stack trace, or suggestions on how to counter the error.
+
+```typescript
+  import AppError from './events/AppError';
+  ...
+  ...
+
+  throw new AppError('User not found', 404, 'User not found', 'Ensure to provide a valid user ID.');
+```
+
+#### AppLog
+
+A `AppLog` Object is used to handle logs in the application. It is a simple object that takes two parameters:
+
+- `type`: A string containing the main _Layer Structure_ that contains the log. There are six allowed values: `Error`, `Server`, `Controller`, `Service`, `Middleware` and `Repository`.
+- `text`: A descriptive string containing the log message. Generally, a short message that describes the output event of the function that generated the log.
+
+```typescript
+  import AppLog from './events/AppLog';
+  ...
+  ...
+
+  AppLog('Error', 'User not found');
+```
+
+###### _ps.2: Have fun with these structures! They are in no way restricted to the project's scope_
+
 <!-- Content -->
 
 ### Author
