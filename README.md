@@ -33,7 +33,7 @@
 ### Author
 
 <a href="https://github.com/NivaldoFarias/">
-  <img src="https://avatars.githubusercontent.com/u/90518458?v=4" height="65px" style="border-radius: 50%; border: 2px solid rgb(62, 224, 153); object-fit: cover;"/>
+  <img src="https://github.com/NivaldoFarias/typescript-project-template/blob/main/.github/author-image.png?raw=true" height="70px""/>
 </a>
 <!-- Change img src to your icon and the href url to your repository url! -->
 
