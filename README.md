@@ -131,20 +131,4 @@ A `AppLog` Object is used to handle logs in the application. It is a simple obje
 
 #
 
-<!-- Footer -->
-
-### Author
-
-<a href="https://github.com/NivaldoFarias/">
-  <img src="https://github.com/NivaldoFarias/typescript-project-template/blob/main/.github/author-image.png?raw=true" height="70px""/>
-</a>
-<!-- Change img src to your icon and the href url to your repository url! -->
-
 ###### Template created by [Nivaldo Farias](https://github.com/NivaldoFarias/typescript-project-template).
-
-<!-- MARKDOWN LINKS & IMAGES -->
-
-[linkedin-shield]: https://img.shields.io/badge/-LinkedIn-black.svg?style=for-the-badge&logo=linkedin&colorB=blue
-[linkedin-url]: https://www.linkedin.com/in/nivaldofarias/
-[slack-shield]: https://img.shields.io/badge/Slack-4A154B?style=for-the-badge&logo=slack&logoColor=white
-[slack-url]: https://driventurmas.slack.com/team/U02T6V2D8D8/
