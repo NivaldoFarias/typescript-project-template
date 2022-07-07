@@ -60,7 +60,7 @@ npm start
 
 You may have noticed that two main structures are already set: a `AppLog` Object and a `AppError` Object. Both are frequently referenced in the code, but do have a specific usage.
 
-#### AppError
+#### ▸ &nbsp; AppError
 
 A `AppError` Object is used to handle errors in the application. It is a simple object that takes four parameters:
 
@@ -69,27 +69,56 @@ A `AppError` Object is used to handle errors in the application. It is a simple 
 - `message`: A string containing a simplified error message, for _Client side_ use. **This is the message that will be displayed to the user.**
 - `detail`: A string containing a detailed error message, for _Client side_ use. Can be used to provide more information about the error, such as the stack trace, or suggestions on how to counter the error.
 
+##### &nbsp; ▾ &nbsp; Example
+
 ```typescript
+  // ..../middlewares/user.middleware.ts
+
   import AppError from './events/AppError';
   ...
   ...
 
-  throw new AppError('User not found', 404, 'User not found', 'Ensure to provide a valid user ID.');
+  async function findById(req: Request,...){
+    ...
+    ...
+
+    if (!user){
+      throw new AppError(
+        'User not found',
+        404,
+        'User not found',
+        'Ensure to provide a valid user ID.'
+      );
+    }
+    ...
+    ...
+  }
 ```
 
-#### AppLog
+#### ▸ &nbsp; AppLog
 
 A `AppLog` Object is used to handle logs in the application. It is a simple object that takes two parameters:
 
 - `type`: A string containing the main _Layer Structure_ that contains the log. There are six allowed values: `Error`, `Server`, `Controller`, `Service`, `Middleware` and `Repository`.
 - `text`: A descriptive string containing the log message. Generally, a short message that describes the output event of the function that generated the log.
 
+##### &nbsp; ▾ &nbsp; Example
+
 ```typescript
+  // ..../middlewares/user.middleware.ts
+
   import AppLog from './events/AppLog';
   ...
   ...
 
-  AppLog('Error', 'User not found');
+  async function findById(req: Request,...){
+    ...
+    ...
+
+    AppLog('Middleware', 'User found');
+    res.locals.user = user;
+    return next();
+  }
 ```
 
 ###### _ps.2: Have fun with these structures! They are in no way restricted to the project's scope_
