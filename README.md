@@ -51,7 +51,7 @@ npm install
 That's it! You can now start developing your TypeScript Project by running the command below. Happy coding!
 
 ```bash
-npm start
+npm run dev
 ```
 
 ###### _ps.: Make sure to update the package.json file with your own credentials!_
@@ -119,6 +119,7 @@ A `AppLog` Object is used to handle logs in the application. It is a simple obje
     ...
     ..
 
+    // output: [Middleware] User Found
     AppLog('Middleware', 'User found');
     res.locals.user = user;
     return next();
