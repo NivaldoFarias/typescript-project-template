@@ -1,5 +1,5 @@
-import express, { json } from 'express';
 import 'express-async-errors';
+import express, { json } from 'express';
 import helmet from 'helmet';
 import cors from 'cors';
 

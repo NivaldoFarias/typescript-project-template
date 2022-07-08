@@ -16,8 +16,6 @@ if (process.env.MODE === 'PROD') {
 const client = new Client(databaseConfig);
 exec();
 
-export default client;
-
 async function exec() {
   try {
     await client.connect();
@@ -26,3 +24,5 @@ async function exec() {
     AppLog('Error', `Interal error whilte connecting to database | ${error}`);
   }
 }
+
+export default client;

@@ -1,8 +1,8 @@
 class AppError {
-  log;
-  statusCode;
-  message;
-  detail;
+  log: string;
+  statusCode: number;
+  message: string;
+  detail: string;
 
   constructor(
     log: string = 'Something went wrong',

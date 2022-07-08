@@ -1,5 +1,5 @@
-interface ITypes {
+interface LogTypes {
   [key: string]: string;
 }
 
-export default ITypes;
+export default LogTypes;

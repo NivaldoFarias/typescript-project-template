@@ -35,7 +35,7 @@
 
 ###### Pre-requisites: Node.js `^16.14.0`, PostgreSQL `^12.11`
 
-First, download the zip file and extract it in the root of your project.
+First, download the zip file and extract it in the root of a new project folder.
 
 ```bash
 wget https://github.com/NivaldoFarias/typescript-project-template/archive/main.zip
@@ -102,7 +102,7 @@ A `AppError` Object is used to handle errors in the application. It is a simple 
 
 A `AppLog` Object is used to handle logs in the application. It is a simple object that takes two parameters:
 
-- `type`: A string containing the main _Layer Structure_ that contains the log. There are six allowed values: `Error`, `Server`, `Controller`, `Service`, `Middleware` and `Repository`.
+- `type`: A string containing the main _Layer Structure_ that contains the log. There are seven allowed values: `Error`, `Server`, `Controller`, `Middleware`, `Repository`, `Service`, and `Util`.
 - `text`: A descriptive string containing the log message. Generally, a short message that describes the output event of the function that generated the log.
 
 ##### Example Usage

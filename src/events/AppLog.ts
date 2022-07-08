@@ -1,13 +1,15 @@
 import chalk from 'chalk';
-import ITypes from './../interfaces/index';
 
-const types: ITypes = {
+import LogTypes from './../interfaces/index';
+
+const types: LogTypes = {
   Middleware: 'magenta',
   Controller: 'green',
   Repository: 'blue',
   Server: 'yellow',
   Service: 'cyan',
   Error: 'red',
+  Util: 'cyan',
 };
 const AppLog = (
   type:
