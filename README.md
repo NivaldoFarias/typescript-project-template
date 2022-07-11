@@ -68,7 +68,7 @@ An `AppError` Object is used to handle errors in the application. It that takes 
 - `log`: A string containing a simplified error message, for _Server side_ use. **This is the message that will be used by the `AppLog` Object**
 - `statusCode`: An integer containing the HTTP status code.
 - `message`: A string containing a simplified error message, for _Client side_ use. **This is the message that will be displayed to the user.**
-- `detail`: A string containing a detailed error message, for _Client side_ use. Can be used to provide more information about the error, such as the stack trace, or suggestions on how to counter the error.
+- `details`: A string containing a detailed error message, for _Client side_ use. Can be used to provide more information about the error, such as the stack trace, or suggestions on how to counter the error.
 
 ##### Example Usage
 
