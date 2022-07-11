@@ -2,18 +2,18 @@ class AppError {
   log: string;
   statusCode: number;
   message: string;
-  detail: string;
+  details: string | {} | string[];
 
   constructor(
-    log: string = 'Something went wrong',
-    statusCode: number = 400,
-    message: string = 'Something went wrong',
-    detail: string = 'An unexpected error occurred',
+    log: string,
+    statusCode: number,
+    message: string,
+    details: string | {} | string[],
   ) {
     this.log = log;
     this.statusCode = statusCode;
     this.message = message;
-    this.detail = detail;
+    this.details = details;
   }
 }
 
