@@ -1,6 +1,6 @@
 {
   "name": "typescript-backend-template",
-  "version": "1.2.0",
+  "version": "2.0.0",
   "description": "Typescript Project Template for Back End Development",
   "main": "dist/server.js",
   "type": "commonjs",
