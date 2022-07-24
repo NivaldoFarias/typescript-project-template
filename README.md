@@ -159,7 +159,7 @@ The `useMiddleware()` function takes two parameters:
   - `token`: A boolean indicating whether the token provided by the client will be verified or not. If the token is not valid, an **`AppError`** Object will be thrown.
 - `endpoint`: A string that will be used to identify the endpoint at which the _client–api_ interaction is undergoing, which will be logged to console by the **`AppLog`** Object.
 
-###### Full reference: [useMiddleware function declaration](https://github.com/NivaldoFarias/typescript-project-template/tree/main/src/utils)
+###### Full reference: [useMiddleware function declaration](https://github.com/NivaldoFarias/typescript-project-template/blob/main/src/utils/middleware.util.ts)
 
 ##### Example Usage
 
