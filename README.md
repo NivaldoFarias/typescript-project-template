@@ -47,7 +47,7 @@
 
 ## Installation and Usage
 
-###### Pre-requisites: Node.js `^16.14.0`, TypeScript `^3.7.5`
+###### Pre-requisites: Node.js `^16.14.0`, TypeScript `^4.7.4`
 
 First, download the zip file and extract it in the root of a new project folder.
 
