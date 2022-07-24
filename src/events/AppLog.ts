@@ -1,26 +1,17 @@
 import chalk from 'chalk';
 
-import LogTypes from './../interfaces/index';
+import { Logs, LogTypes } from '../types/log';
 
-const types: LogTypes = {
+const types: Logs = {
   Middleware: 'magenta',
   Controller: 'green',
   Repository: 'blue',
   Server: 'yellow',
   Service: 'cyan',
-  Error: 'red',
   Util: 'cyan',
+  Error: 'red',
 };
-const AppLog = (
-  type:
-    | 'Middleware'
-    | 'Controller'
-    | 'Repository'
-    | 'Server'
-    | 'Service'
-    | 'Error',
-  text: string,
-) => {
+const AppLog = (type: LogTypes, text: string) => {
   console.log(
     chalk.bold[
       types[type] as 'green' | 'magenta' | 'blue' | 'yellow' | 'cyan' | 'red'

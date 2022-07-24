@@ -1,7 +1,7 @@
 import { Request, Response, NextFunction } from 'express';
 
-import AppError from './../config/error';
 import AppLog from './AppLog';
+import AppError from './../config/error';
 
 function ExceptionHandler(
   error: any,
@@ -11,7 +11,7 @@ function ExceptionHandler(
 ) {
   const { log, statusCode, message, details } = error;
 
-  AppLog('Error', log);
+  AppLog('Error', log ?? message);
   return error instanceof AppError
     ? res.status(statusCode).send({ message, details })
     : res.status(500).send({

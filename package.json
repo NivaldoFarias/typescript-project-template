@@ -1,21 +1,25 @@
 {
-  "name": "typescript-project-template",
+  "name": "typescript-backend-template",
   "version": "1.2.0",
   "description": "Typescript Project Template for Back End Development",
   "main": "dist/server.js",
   "type": "commonjs",
   "scripts": {
     "start": "node dist/server.js",
-    "ts:start": "ts-node src/server.ts",
     "build": "tsc -p tsconfig.json",
-    "dev": "tsnd --respawn --transpile-only src/server.ts",
-    "debug": "tsnd --respawn --transpile-only --debug src/server.ts"
+    "ts:start": "ts-node src/server.ts",
+    "dev": "tsnd --respawn --transpile-only --exit-child src/server.ts",
+    "debug": "tsnd --respawn --transpile-only --exit-child --debug src/server.ts",
+    "migrate": "npx prisma migrate dev",
+    "studio": "npx prisma studio",
+    "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [
     "typescript",
     "node",
     "nodejs",
-    "template"
+    "template",
+    "prisma"
   ],
   "author": {
     "name": "Nivaldo Farias",
@@ -23,6 +27,8 @@
   },
   "license": "MIT",
   "dependencies": {
+    "@prisma/client": "^4.1.0",
+    "bcrypt": "^5.0.1",
     "chalk": "^4.1.2",
     "cors": "^2.8.5",
     "dotenv": "^16.0.1",
@@ -30,13 +36,15 @@
     "express-async-errors": "^3.1.1",
     "helmet": "^5.1.0",
     "joi": "^17.6.0",
-    "pg": "^8.7.3"
+    "jsonwebtoken": "^8.5.1"
   },
   "devDependencies": {
+    "@types/bcrypt": "^5.0.0",
     "@types/cors": "^2.8.12",
     "@types/express": "^4.17.13",
+    "@types/jsonwebtoken": "^8.5.8",
     "@types/node": "^18.0.3",
-    "@types/pg": "^8.6.5",
+    "prisma": "^4.1.0",
     "ts-node": "^10.8.2",
     "ts-node-dev": "^1.1.8",
     "tslib": "^2.4.0",

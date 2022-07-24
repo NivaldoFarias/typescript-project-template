@@ -21,19 +21,33 @@
 
   <img src="https://img.shields.io/badge/PostgreSQL-316192?style=for-the-badge&logo=postgresql&logoColor=white" height="30px"/>
   <img src="https://img.shields.io/badge/TypeScript-007ACC?style=for-the-badge&logo=typescript&logoColor=white" height="30px"/>
+  <img src="https://img.shields.io/badge/Prisma-3982CE?style=for-the-badge&logo=Prisma&logoColor=white" height="30px"/>
   <img src="https://img.shields.io/badge/Node.js-43853D?style=for-the-badge&logo=node.js&logoColor=white" height="30px"/>  
   <img src="https://img.shields.io/badge/Express.js-404D59?style=for-the-badge&logo=express.js&logoColor=white" height="30px"/>
+  <img src="https://img.shields.io/badge/JWT-323330?style=for-the-badge&logo=json-web-tokens&logoColor=pink" height="30px"/>
 
   <!-- Badges source: https://dev.to/envoy_/150-badges-for-github-pnk -->
 </div>
 
 <!-- Table of Contents -->
 
+# Table of Contents
+
+- [Installation and Usage](#installation-and-usage)
+- [Error Handling and Logging](#error-handling-and-logging)
+  - [AppError](#--apperror)
+  - [AppLog](#--applog)
+- [Middlewares](#middlewares)
+- [API Reference](#api-reference)
+  - [Models](#models)
+  - [Routes](#routes)
+  - [Authentication](#authentication)
+
 <!-- Installation and Usage -->
 
 ## Installation and Usage
 
-###### Pre-requisites: Node.js `^16.14.0`, PostgreSQL `^12.11`
+###### Pre-requisites: Node.js `^16.14.0`, TypeScript `^3.7.5`
 
 First, download the zip file and extract it in the root of a new project folder.
 
@@ -73,15 +87,17 @@ An `AppError` Object is used to handle errors in the application. It that takes 
 ##### Example Usage
 
 ```typescript
-  // ..../middlewares/user.middleware.ts
+  // ..../middlewares/auth.middleware.ts
 
-  import AppError from './events/AppError';
+  import * as repository from './../repositories/auth.repository.ts';
+  import AppError from './../events/AppError';
   ...
   ..
 
-  async function findById(req: Request,...){
+  async function usersExists(req: Request,...){
     ...
     ..
+    const user = await repository.findbyId(req.body.id);
 
     if (!user){
       throw new AppError(
@@ -106,13 +122,13 @@ An `AppLog` Object is used to handle logs in the application. It takes two param
 ##### Example Usage
 
 ```typescript
-  // ..../middlewares/user.middleware.ts
+  // ..../middlewares/auth.middleware.ts
 
   import AppLog from './events/AppLog';
   ...
   ..
 
-  async function findById(req: Request,...){
+  async function usersExists(req: Request,...){
     ...
     ..
 
@@ -131,67 +147,136 @@ An `AppLog` Object is used to handle logs in the application. It takes two param
 
 ## Middlewares
 
-While aiming to provide a reusable, modular and extensible architecture, the middlewares are generally the first structures to be refactored into self-contained modules. The `validateSchema()` and `processHeader()` middlewares were set in order to achieve that goal. The following sections describes their structure and usage.
+While aiming to provide a reusable, modular and extensible architecture, the middlewares are generally the first structures to be refactored into self-contained modules. The `validateSchema()`, `processHeader()` and `requireToken()` middlewares were set in order to achieve that goal. The following section describes **`useMiddleware()`**, which incorporates the forementioned functions as _key–value_ pairs in an Object, along with their structure and usage.
 
-##### Example Middlewares Usage
+### ‣ &nbsp;UseMiddleware
+
+The `useMiddleware()` function takes two parameters:
+
+- `middlewares`: An Object containing the _key–value_ pairs of the middlewares to be used, takes one to three parameters:
+  - `schema`: A [Joi](https://joi.dev/api/) Schema Object that will be used to validate the data provided by the client. If the data provided by the client is not valid, an **`AppError`** Object will be thrown.
+  - `header`: A string containing the name of the header that will be used to authenticate the action. If the client-provided header is missing, an **`AppError`** Object will be thrown.
+  - `token`: A boolean indicating whether the token provided by the client will be verified or not. If the token is not valid, an **`AppError`** Object will be thrown.
+- `endpoint`: A string that will be used to identify the endpoint at which the _client–api_ interaction is undergoing, which will be logged to console by the **`AppLog`** Object.
+
+###### Full reference: [useMiddleware function declaration](https://github.com/NivaldoFarias/typescript-project-template/tree/main/src/utils)
+
+##### Example Usage
 
 ```typescript
-// ..../routes/user.route.ts
-import validateSchema from '../middlewares/schema.middleware';
-import processHeader from '../middlewares/header.middleware';
-
-import userSchema from '../models/user.schema';
+// ..../routes/admin.route.ts
+import useMiddleware from '../utils/middleware.util';
+import * as schema from '../models/admin.model';
 ...
 ..
-const endpoint = '/users';
+const endpoint = '/admin';
 
-userRouter.put(endpoint,
-  validateSchema(userSchema, endpoint),
-  processHeader('token', endpoint),
-  ...
-  ..
-  controller.createUser
+const registerEndpoint = '/create';
+adminRouter.post(endpoint,
+  createEndpoint,
+  useMiddleware({
+    schema: schema.create,
+    header: 'admin-api-key',
+    token: true
+  },
+  endpoint + createEndpoint),
+  middleware.createValidations,
+  controller.create,
 );
-
 ..
 ...
 ```
 
-#### ▸ &nbsp; Schema Validation
+# API Reference
 
-When working with data, it is essential to validate what was provided by the client before saving it to the database. Since this is a common process while in Development, having a simplified, modular, schema validation middleware is key. The `validateSchema()` middlewares takes two parameters:
+In this section, you will find the API's endpoints and their respective descriptions, along with the request and response examples, as well as the [Prisma](https://www.prisma.io/) models for each entity, that can be used as guide for data formatting. All data is sent and received as JSON.
 
-- `schema`: A Schema Object that will be used to validate the data provided by the client. If the data provided by the client is not valid, an **`AppError`** Object will be thrown.
-- `endpoint`: A string that will be used to identify the endpoint at which the schema is being validated, which will be Logged to console by the **`AppLog`** Object.
+<!-- Models -->
 
-##### Thrown AppError
+## Models
 
-```typescript
-throw new AppError(
-  'Invalid input',
-  422,
-  'Invalid input',
-  error.details.map((detail) => detail.message).join(', '),
-);
+### User model _`users`_
+
+- `id`: A unique identifier for each user. `serial4`
+- `username`: The user's username. `text`
+- `email`: The user's email. An email may only be registered once. `text`
+- `password`: The user's password. `text`
+- `created_at`: The date and time when the user was created. `timestamp`
+
+## Routes
+
+### [Authentication](#authentication) _`/auth`_
+
+- [Register](#---register)
+- [Sign In](#---sign-in)
+
+## Authentication
+
+### &nbsp; ‣ &nbsp; Register
+
+###### &nbsp; &nbsp; POST _`/auth/register`_
+
+### &nbsp; ☰ &nbsp; Request
+
+###### Body
+
+```json
+{
+  "username": "johndoe",
+  "email": "john_doe@gmail.com",
+  "password": "123456789"
+}
 ```
 
-#### ▸ &nbsp; Header Processing
+###### Headers
 
-As well as dealing with data that will directly be used by the server to create entities on the database, middlewares must ensure that the necessary headers were provided by the client in order to authenticate the action. The `processHeader()` middlewares takes two parameters:
-
-- `header`: A string containing the name of the header that will be used to authenticate the action. If the client-provided header is missing, an **`AppError`** Object will be thrown.
-- `endpoint`: A string that will be used to identify the endpoint at which the schema is being validated, which will be Logged to console by the **`AppLog`** Object.
-
-##### Thrown AppError
-
-```typescript
-throw new AppError(
-  'Missing headers',
-  400,
-  'Missing headers',
-  'Ensure to provide the necessary headers',
-);
+```json
+{
+  "Content-Type": "application/json"
+}
 ```
+
+### &nbsp; ☰ &nbsp; Responses
+
+| Status Code |       Description        |          Properties           |
+| :---------: | :----------------------: | :---------------------------: |
+|   **201**   |         Created          |          `data: {}`           |
+|   **409**   | Email already registered | `error: { message, details }` |
+|   **422**   |      Invalid Input       | `error: { message, details }` |
+|   **500**   |  Internal Server Error   | `error: { message, details }` |
+
+### &nbsp; ‣ &nbsp; Sign in
+
+###### &nbsp; &nbsp; POST _`/auth/sign-in`_
+
+### &nbsp; ☰ &nbsp; Request
+
+###### Body
+
+```json
+{
+  "email": "john_doe@gmail.com",
+  "password": "123456789"
+}
+```
+
+###### Headers
+
+```json
+{
+  "Content-Type": "application/json"
+}
+```
+
+### &nbsp; ☰ &nbsp; Responses
+
+| Status Code |      Description      |          Properties           |
+| :---------: | :-------------------: | :---------------------------: |
+|   **200**   |          OK           |       `data: { token }`       |
+|   **403**   |   Invalid password    | `error: { message, details }` |
+|   **404**   |    User not found     | `error: { message, details }` |
+|   **422**   |     Invalid Input     | `error: { message, details }` |
+|   **500**   | Internal Server Error | `error: { message, details }` |
 
 #
 
