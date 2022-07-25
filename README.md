@@ -3,17 +3,18 @@
 <!-- Project Summary -->
 
 <br />
+
 <div align="center">
   <a href="https://github.com/NivaldoFarias/typescript-project-template">
-    <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/typescript/typescript-original.svg" alt="Logo" width="80">
+    <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/typescript/typescript-original.svg" alt="Logo" width="90">
   </a>
 
-<h3 align="center">TypeScript Project Template</h3>
-  <h6>WIP</h6>
-  <p>
+  <h3 align="center">TypeScript Project Template</h3>
+  <div align="center">
     Back End Development Project Template
     <br />
     <a href="https://github.com/NivaldoFarias/typescript-project-template/tree/main/src"><strong>Browse TypeScript code»</strong></a>
+  </div>
 </div>
 
 <div align="center">
@@ -27,6 +28,17 @@
   <img src="https://img.shields.io/badge/JWT-323330?style=for-the-badge&logo=json-web-tokens&logoColor=pink" height="30px"/>
 
   <!-- Badges source: https://dev.to/envoy_/150-badges-for-github-pnk -->
+</div>
+
+<br />
+
+<div align="center">
+  <a href="https://github.com/NivaldoFarias/typescript-project-template/releases/tag/v2.0.0" alt="Current template version badge">
+    <img src="https://img.shields.io/github/package-json/v/NivaldoFarias/typescript-project-template?style=flat-square" />
+  </a>
+  <a href="https://github.com/NivaldoFarias/typescript-project-template/releases/tag/v2.0.0" alt="Current template version badge">
+    <img src="https://img.shields.io/badge/license-MIT-%23A8D1FF?style=flat-square" />
+  </a>
 </div>
 
 <!-- Table of Contents -->
