@@ -59,7 +59,7 @@
 
 ## Installation and Usage
 
-###### Pre-requisites: Node.js `^16.14.0`, TypeScript `^4.7.4`
+###### Pre-requisites: Node.js `^16.14.0`, PostgreSQL `^12.11`
 
 There are two available options for you to use this template for your next Back End project: either use Github's built-in `Use this template` feature (green button left of the _'About'_ section), or download the zip file and extract it in the root of a new project folder by running these commands:
 
