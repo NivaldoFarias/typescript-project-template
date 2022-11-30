@@ -1,14 +1,9 @@
-class AppError {
-  log: string;
-  statusCode: number;
-  message: string;
-  details: string | {} | string[];
-
+export default class AppError {
   constructor(
-    log: string,
-    statusCode: number,
-    message: string,
-    details: string | {} | string[],
+    public log: string,
+    public statusCode: number,
+    public message: string,
+    public details: string | {} | string[],
   ) {
     this.log = log;
     this.statusCode = statusCode;
@@ -16,5 +11,3 @@ class AppError {
     this.details = details;
   }
 }
-
-export default AppError;

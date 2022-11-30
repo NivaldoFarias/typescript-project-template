@@ -1,9 +1,11 @@
-import { Request, Response, NextFunction } from 'express';
+import { Request, Response, NextFunction } from "express";
 
-import AppLog from './AppLog';
-import AppError from './../config/error';
+import AppLog from "./AppLog";
+import AppError from "./../config/error";
 
-function ExceptionHandler(
+export { AppError };
+
+export default function ExceptionHandler(
   error: any,
   _req: Request,
   res: Response,
@@ -11,7 +13,7 @@ function ExceptionHandler(
 ) {
   const { log, statusCode, message, details } = error;
 
-  AppLog('Error', log ?? message);
+  AppLog.error(log ?? message);
   return error instanceof AppError
     ? res.status(statusCode).send({ message, details })
     : res.status(500).send({
@@ -19,6 +21,3 @@ function ExceptionHandler(
         details: error,
       });
 }
-
-export { AppError };
-export default ExceptionHandler;

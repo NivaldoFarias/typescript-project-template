@@ -1,24 +1,24 @@
-import jwt, { Algorithm, SignOptions } from 'jsonwebtoken';
-import bcrypt from 'bcrypt';
+import jwt, { Algorithm, SignOptions } from "jsonwebtoken";
+import bcrypt from "bcrypt";
 
-import { env } from '../utils/constants.util';
-import AppLog from '../events/AppLog';
+import { env } from "../utils/constants.util";
+import AppLog from "../events/AppLog";
 
-function hashPassword(password: string) {
+export function hashPassword(password: string) {
   const encrypted = bcrypt.hashSync(password, env.SALT_ROUNDS);
 
-  AppLog('Service', 'Password encrypted');
+  AppLog.service("Password encrypted.");
   return encrypted;
 }
 
-function decryptPassword(password: string, encrypted: string) {
+export function decryptPassword(password: string, encrypted: string) {
   const isValid = bcrypt.compareSync(password, encrypted);
 
-  AppLog('Service', 'Password decrypted');
+  AppLog.service("Password decrypted.");
   return isValid;
 }
 
-function generateToken(id: number) {
+export function generateToken(id: number) {
   const data = {};
   const subject = id.toString();
   const secretKey = env.JWT_SECRET;
@@ -29,8 +29,6 @@ function generateToken(id: number) {
 
   const token = jwt.sign(data, secretKey, config);
 
-  AppLog('Service', 'Token generated');
+  AppLog.service("Token generated.");
   return token;
 }
-
-export { hashPassword, generateToken, decryptPassword };

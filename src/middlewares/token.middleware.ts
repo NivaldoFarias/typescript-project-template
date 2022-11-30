@@ -1,11 +1,11 @@
-import jwt, { JwtPayload } from 'jsonwebtoken';
+import jwt, { JwtPayload } from "jsonwebtoken";
 
-import { env } from '../utils/constants.util';
+import { env } from "../utils/constants.util";
 
-import AppError from '../config/error';
-import AppLog from '../events/AppLog';
+import AppError from "../config/error";
+import AppLog from "../events/AppLog";
 
-async function requireToken(authorization: string) {
+export default async function requireToken(authorization: string) {
   const token = parseToken(authorization);
   let subject = null;
 
@@ -16,12 +16,10 @@ async function requireToken(authorization: string) {
     throw new AppError(`Invalid token`, 403, `Invalid token`, error);
   }
 
-  AppLog('Middleware', 'Valid token');
+  AppLog.middleware("Valid token.");
   return subject;
-}
 
-function parseToken(header: string) {
-  return header.replace('Bearer ', '').trim() ?? null;
+  function parseToken(header: string) {
+    return header.replace("Bearer ", "").trim() ?? null;
+  }
 }
-
-export default requireToken;

@@ -57,7 +57,7 @@
 
 <!-- Installation and Usage -->
 
-## Installation and Usage
+# Installation and Usage
 
 ###### Pre-requisites: Node.js `^16.14.0`, PostgreSQL `^12.11`
 
@@ -83,7 +83,7 @@ npm run dev
 
 <!-- Error Handling and Logging -->
 
-## Error Handling and Logging
+# Error Handling and Logging
 
 While dealing with errors in a _Layered Structure_ Project enviroment, you may notice that the project's debugging complexity scales beyond common `console.log()` usage. The `AppLog` Object and `AppError` Object structures were set to counter that exact issue, by trying to keep the Development process as clean and concise as possible. Both are frequently referenced in the code, but do have a specific usage.
 
@@ -126,10 +126,34 @@ An `AppError` Object is used to handle errors in the application. It that takes 
 
 #### ▸ &nbsp; AppLog
 
-An `AppLog` Object is used to handle logs in the application. It takes two parameters:
+An `AppLog` Object is used to handle logs in the application. Each method corresponds to a respective color and prefix to log messages. It takes one parameter: `text`: a descriptive string containing the message to be logged.
 
-- `type`: A string containing the main _Layer Structure_ that contains the log. There are seven allowed values: `Error`, `Server`, `Controller`, `Middleware`, `Repository`, `Service`, and `Util`.
-- `text`: A descriptive string containing the log message. Generally, a short message that describes the output event of the function that generated the log.
+|     Method     |  Color  |   Log prefix   |
+| :------------: | :-----: | :------------: |
+| **controller** |  Green  | `[Controller]` |
+| **repository** |  Blue   | `[Repository]` |
+| **middleware** | Magenta | `[Middleware]` |
+|  **service**   |  Cyan   |  `[Service]`   |
+|   **error**    |   Red   |   `[Error]`    |
+|   **server**   | Yellow  |   `[Server]`   |
+|   **utils**    |  Cyan   |   `[Utils]`    |
+
+##### Example Usage
+
+```ts
+// .../middlewares/auth.middleware.ts
+
+//...
+async function validPassword(password: string) {
+  const isValid = await bcrypt.compare(password, user.password);
+
+  if (!isValid) {
+    // throw an AppError instance
+  }
+
+  return AppLog.middleware("Password is valid");
+}
+```
 
 ##### Example Usage
 
@@ -157,7 +181,7 @@ An `AppLog` Object is used to handle logs in the application. It takes two param
 
 <!-- Middlewares -->
 
-## Middlewares
+# Middlewares
 
 While aiming to provide a reusable, modular and extensible architecture, the middlewares are generally the first structures to be refactored into self-contained modules. The `validateSchema()`, `processHeader()` and `requireToken()` middlewares were set in order to achieve that goal. The following section describes **`useMiddleware()`**, which incorporates the forementioned functions as _key–value_ pairs in an Object, along with their structure and usage.
 

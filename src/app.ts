@@ -1,12 +1,13 @@
-import 'express-async-errors';
-import express, { json } from 'express';
-import helmet from 'helmet';
-import cors from 'cors';
+import "express-async-errors";
+import express, { json } from "express";
+import helmet from "helmet";
+import cors from "cors";
 
-import ExceptionHandler from './events/AppError';
-import router from './routes/index';
+import ExceptionHandler from "./events/AppError";
+import router from "./routes/index";
 
 const app = express();
+
 app.use(cors());
 app.use(json());
 app.use(helmet());
