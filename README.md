@@ -59,7 +59,7 @@
 
 # Installation and Usage
 
-###### Pre-requisites: Node.js `^16.14.0`, PostgreSQL `^12.11`
+###### Pre-requisites: Node `^18.12.1`, npm `^8.19.2` OR yarn `^1.22.19` , PostgreSQL `^12.11`
 
 There are two available options for you to use this template for your next Back End project: either use Github's built-in `Use this template` feature (green button left of the _'About'_ section), or download the zip file and extract it in the root of a new project folder by running these commands:
 
@@ -70,13 +70,21 @@ wget https://github.com/NivaldoFarias/typescript-project-template/archive/main.z
 Then run the following command to install the project's dependencies:
 
 ```bash
+# Using npm
 npm install
+
+# Using yarn
+yarn install
 ```
 
 That's it! You can now start developing your TypeScript Project by running the command below. Happy coding!
 
 ```bash
+# Using npm
 npm run dev
+
+# Using yarn
+yarn dev
 ```
 
 ###### _ps.: Make sure to update the package.json file with your own credentials!_

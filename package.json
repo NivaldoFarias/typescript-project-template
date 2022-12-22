@@ -26,6 +26,11 @@
     "name": "Nivaldo Farias",
     "url": "https://github.com/NivaldoFarias"
   },
+  "engines": {
+    "node": ">=18.12.1",
+    "npm": ">=8.19.2",
+    "yarn": ">=1.22.19"
+  },
   "license": "MIT",
   "dependencies": {
     "@prisma/client": "^4.1.0",
