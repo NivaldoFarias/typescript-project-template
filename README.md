@@ -42,13 +42,12 @@
 </div>
 
 <!-- Table of Contents -->
-
 ## Table of Contents
 
 - [Installation and Usage](#installation-and-usage)
 - [Error Handling and Logging](#error-handling-and-logging)
-  - [AppError](#--apperror)
-  - [AppLog](#--applog)
+  - [AppError](#apperror)
+  - [AppLog](#applog)
 - [Middlewares](#middlewares)
 - [API Reference](#api-reference)
   - [Models](#models)
@@ -56,7 +55,6 @@
   - [Authentication](#authentication)
 
 <!-- Installation and Usage -->
-
 ## Installation and Usage
 
 ###### Pre-requisites: Node `^18.12.1`, npm `^8.19.2` OR yarn `^1.22.19` , PostgreSQL `^12.11`
@@ -90,12 +88,11 @@ yarn dev
 ###### _ps.: Make sure to update the package.json file with your own credentials!_
 
 <!-- Error Handling and Logging -->
-
-# Error Handling and Logging
+## Error Handling and Logging
 
 While dealing with errors in a _Layered Structure_ Project enviroment, you may notice that the project's debugging complexity scales beyond common `console.log()` usage. The `AppLog` Object and `AppError` Object structures were set to counter that exact issue, by trying to keep the Development process as clean and concise as possible. Both are frequently referenced in the code, but do have a specific usage.
 
-#### ▸ &nbsp; AppError
+## AppError
 
 An `AppError` Object is used to handle errors in the application. It that takes four parameters:
 
@@ -104,7 +101,7 @@ An `AppError` Object is used to handle errors in the application. It that takes 
 - `message`: A string containing a simplified error message, for _Client side_ use. **This is the message that will be displayed to the user.**
 - `details`: A string containing a detailed error message, for _Client side_ use. Can be used to provide more information about the error, such as the stack trace, or suggestions on how to counter the error.
 
-##### Example Usage
+### Example Usage
 
 ```typescript
   // ..../middlewares/auth.middleware.ts
@@ -132,7 +129,7 @@ An `AppError` Object is used to handle errors in the application. It that takes 
   }
 ```
 
-#### ▸ &nbsp; AppLog
+### AppLog
 
 An `AppLog` Object is used to handle logs in the application. Each method corresponds to a respective color and prefix to log messages. It takes one parameter: `text`: a descriptive string containing the message to be logged.
 
@@ -146,7 +143,7 @@ An `AppLog` Object is used to handle logs in the application. Each method corres
 |   **server**   | Yellow  |   `[Server]`   |
 |   **utils**    |  Cyan   |   `[Utils]`    |
 
-##### Example Usage
+#### Example Usage
 
 ```ts
 // .../middlewares/auth.middleware.ts
@@ -163,7 +160,7 @@ async function validPassword(password: string) {
 }
 ```
 
-##### Example Usage
+#### Example Usage
 
 ```typescript
   // ..../middlewares/auth.middleware.ts
@@ -193,7 +190,7 @@ async function validPassword(password: string) {
 
 While aiming to provide a reusable, modular and extensible architecture, the middlewares are generally the first structures to be refactored into self-contained modules. The `validateSchema()`, `processHeader()` and `requireToken()` middlewares were set in order to achieve that goal. The following section describes **`useMiddleware()`**, which incorporates the forementioned functions as _key–value_ pairs in an Object, along with their structure and usage.
 
-### ‣ &nbsp;UseMiddleware
+### UseMiddleware
 
 The `useMiddleware()` function takes two parameters:
 
@@ -205,7 +202,7 @@ The `useMiddleware()` function takes two parameters:
 
 ###### Reference: [useMiddleware function declaration](https://github.com/NivaldoFarias/typescript-project-template/blob/main/src/utils/middleware.util.ts)
 
-##### Example Usage
+#### Example Usage
 
 ```typescript
 // ..../routes/admin.route.ts
@@ -234,8 +231,6 @@ adminRouter.post(endpoint,
 ## API Reference
 
 In this section, you will find the example API's endpoints and their respective descriptions, along with the request and response examples, as well as the [Prisma](https://www.prisma.io/) models for each entity, that can be used as guide for data formatting. All data is sent and received as JSON.
-
-<!-- Models -->
 
 ### Models
 
