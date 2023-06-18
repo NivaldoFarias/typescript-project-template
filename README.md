@@ -43,7 +43,7 @@
 
 <!-- Table of Contents -->
 
-# Table of Contents
+## Table of Contents
 
 - [Installation and Usage](#installation-and-usage)
 - [Error Handling and Logging](#error-handling-and-logging)
@@ -57,7 +57,7 @@
 
 <!-- Installation and Usage -->
 
-# Installation and Usage
+## Installation and Usage
 
 ###### Pre-requisites: Node `^18.12.1`, npm `^8.19.2` OR yarn `^1.22.19` , PostgreSQL `^12.11`
 
@@ -189,7 +189,7 @@ async function validPassword(password: string) {
 
 <!-- Middlewares -->
 
-# Middlewares
+## Middlewares
 
 While aiming to provide a reusable, modular and extensible architecture, the middlewares are generally the first structures to be refactored into self-contained modules. The `validateSchema()`, `processHeader()` and `requireToken()` middlewares were set in order to achieve that goal. The following section describes **`useMiddleware()`**, which incorporates the forementioned functions as _key–value_ pairs in an Object, along with their structure and usage.
 
@@ -231,15 +231,15 @@ adminRouter.post(endpoint,
 ...
 ```
 
-# API Reference
+## API Reference
 
 In this section, you will find the example API's endpoints and their respective descriptions, along with the request and response examples, as well as the [Prisma](https://www.prisma.io/) models for each entity, that can be used as guide for data formatting. All data is sent and received as JSON.
 
 <!-- Models -->
 
-## Models
+### Models
 
-### User model _`users`_
+#### User model _`users`_
 
 - `id`: A unique identifier for each user. `serial4`
 - `username`: The user's username. `text`
@@ -247,20 +247,20 @@ In this section, you will find the example API's endpoints and their respective 
 - `password`: The user's password. `text`
 - `created_at`: The date and time when the user was created. `timestamp`
 
-## Routes
+### Routes
 
-### [Authentication](#authentication) _`/auth`_
+#### [Authentication](#authentication) _`/auth`_
 
 - [Register](#---register)
 - [Sign In](#---sign-in)
 
-## Authentication
+### Authentication
 
-### &nbsp; ‣ &nbsp; Register
+#### Register
 
 ###### &nbsp; &nbsp; POST _`/auth/register`_
 
-### &nbsp; ☰ &nbsp; Request
+##### Request
 
 ###### Body
 
@@ -280,7 +280,7 @@ In this section, you will find the example API's endpoints and their respective 
 }
 ```
 
-### &nbsp; ☰ &nbsp; Responses
+##### Responses
 
 | Status Code |       Description        |          Properties           |
 | :---------: | :----------------------: | :---------------------------: |
@@ -289,11 +289,11 @@ In this section, you will find the example API's endpoints and their respective 
 |   **422**   |      Invalid Input       | `error: { message, details }` |
 |   **500**   |  Internal Server Error   | `error: { message, details }` |
 
-### &nbsp; ‣ &nbsp; Sign in
+#### Sign in
 
-###### &nbsp; &nbsp; POST _`/auth/sign-in`_
+###### POST _`/auth/sign-in`_
 
-### &nbsp; ☰ &nbsp; Request
+##### Request
 
 ###### Body
 
@@ -312,7 +312,7 @@ In this section, you will find the example API's endpoints and their respective 
 }
 ```
 
-### &nbsp; ☰ &nbsp; Responses
+##### Responses
 
 | Status Code |      Description      |          Properties           |
 | :---------: | :-------------------: | :---------------------------: |
@@ -321,7 +321,3 @@ In this section, you will find the example API's endpoints and their respective 
 |   **404**   |    User not found     | `error: { message, details }` |
 |   **422**   |     Invalid Input     | `error: { message, details }` |
 |   **500**   | Internal Server Error | `error: { message, details }` |
-
-#
-
-###### Template created by [Nivaldo Farias](https://github.com/NivaldoFarias/typescript-project-template).
